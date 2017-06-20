@@ -9,6 +9,5 @@ namespace Monad
             var matcher = new BindMatcher<A, Error, B>(selector);
             return self.Apply(matcher);
         }
-            
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Monad;
 using NSubstitute;
+using System;
 using Xunit;
 
 namespace Tests
@@ -10,23 +11,23 @@ namespace Tests
         [Fact]
         public void Apply_Passes_Error_To_Matcher()
         {
-            var matcher = Substitute.For<IResultMatcher<int, int, int>>();
-            const int value = 400;
+            var matcher = Substitute.For<IResultMatcher<int, Exception, int>>();
+            var exception = new Exception();
 
-            var error = new Error<int, int>(value);
+            var error = ResultFactory.Default.Error<int>(exception);
             error.Apply(matcher);
 
-            matcher.Received().Error(value);
+            matcher.Received().Error(exception, Arg.Any<Func<Exception, Exception>>());
         }
 
         [Fact]
         public void Apply_Returns_Result_From_Matcher()
         {
-            var matcher = Substitute.For<IResultMatcher<int, int, int>>();
+            var matcher = Substitute.For<IResultMatcher<int, Exception, int>>();
             const int result = 1337;
-            matcher.Error(Arg.Any<int>()).Returns(result);
+            matcher.Error(Arg.Any<Exception>(), Arg.Any<Func<Exception, Exception>>()).Returns(result);
 
-            var error = new Error<int, int>(0);
+            var error = ResultFactory.Default.Error<int>(new Exception());
 
             var actualResult = error.Apply(matcher);
 

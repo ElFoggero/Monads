@@ -2,23 +2,30 @@
 
 namespace Monad
 {
-    internal class BindMatcher<A, Error, B> : IResultMatcher<A, Error, Result<B, Error>>
+    internal class BindMatcher<A, Err, B> : IResultMatcher<A, Err, Result<B, Err>>
     {
-        private readonly Func<A, Result<B, Error>> _selector;
+        private readonly Func<A, Result<B, Err>> _selector;
 
-        public BindMatcher(Func<A, Result<B, Error>> selector)
+        public BindMatcher(Func<A, Result<B, Err>> selector)
         {
             _selector = selector;
         }
 
-        public Result<B, Error> Success(A value)
+        public Result<B, Err> Success(A value, Func<Exception, Err> exceptionHandler)
         {
-            return _selector(value);
+            try
+            {
+                return _selector(value);
+            }
+            catch (Exception ex)
+            {
+                return new Error<B, Err>(exceptionHandler(ex), exceptionHandler);
+            }
         }
 
-        Result<B, Error> IResultMatcher<A, Error, Result<B, Error>>.Error(Error error)
+        public Result<B, Err> Error(Err error, Func<Exception, Err> exceptionHandler)
         {
-            return new Error<B, Error>(error);
+            return new Error<B, Err>(error, exceptionHandler);
         }
     }
 }

@@ -9,8 +9,8 @@ namespace Tests
         [Fact]
         public void When_Given_A_Success_It_Returns_Selector_Result()
         {
-            var expectedResult = new Success<int, object>(1337);
-            var success = new Success<int, object>(23);
+            var expectedResult = ResultFactory.Default.Success(1337);
+            var success = ResultFactory.Default.Success(23);
 
             var actualResult = success.Bind(i => expectedResult);
 
@@ -20,9 +20,9 @@ namespace Tests
         [Fact]
         public void When_Given_An_Error_It_Does_Not_Call_The_Selector()
         {
-            var error = new Error<int, object>(new object());
+            var error = ResultFactory.Default.Error<int>(new Exception());
 
-            Func<int, Result<int, object>> selector = i =>
+            Func<int, Result<int, Exception>> selector = i =>
             {
                 Assert.True(false);
                 return null;
@@ -30,7 +30,7 @@ namespace Tests
             
             var result = error.Bind(selector);
 
-            Assert.IsType<Error<int, object>>(error);
+            Assert.IsType<Error<int, Exception>>(error);
         }
     }
 }
