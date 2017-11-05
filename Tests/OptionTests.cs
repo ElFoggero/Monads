@@ -181,5 +181,25 @@ namespace Tests
 
             value.Should().Be(1337);
         }
+
+        [Fact]
+        public void Option_Some_Filter_Returns_Value_If_Predicate_Returns_True()
+        {
+            var option = Option.Of(1337);
+
+            var result = option.Filter(i => i == 1337);
+
+            result.Should().BeSome(1337);
+        }
+
+        [Fact]
+        public void Option_Some_Filter_Returns_None_If_Predicate_Returns_False()
+        {
+            var option = Option.Of(1337);
+
+            var result = option.Filter(i => i != 1337);
+
+            result.Should().BeNone();
+        }
     }
 }
