@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monad
+namespace ElFoggero.Monads
 {
     internal sealed class OptionBindMatcher<T, U> : IOptionMatcher<T, Option<U>>
     {

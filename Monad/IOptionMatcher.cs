@@ -1,4 +1,4 @@
-﻿namespace Monad
+﻿namespace ElFoggero.Monads
 {
     public interface IOptionMatcher<in T, out U>
     {

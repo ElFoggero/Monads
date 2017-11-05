@@ -1,8 +1,6 @@
-﻿using FluentAssertions;
-using FluentAssertions.Monads;
-using Monad;
+﻿using ElFoggero.Monads;
 
-namespace Tests
+namespace FluentAssertions.Monads
 {
     public class OptionAssertions<T>
     {

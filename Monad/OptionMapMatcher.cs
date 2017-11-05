@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monad
+namespace ElFoggero.Monads
 {
     internal class OptionMapMatcher<T, U> : IOptionMatcher<T, Option<U>>
     {

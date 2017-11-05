@@ -1,6 +1,6 @@
-﻿using Monad;
+﻿using ElFoggero.Monads;
 
-namespace Tests
+namespace FluentAssertions.Monads
 {
     public static class OptionAssertionExtension
     {

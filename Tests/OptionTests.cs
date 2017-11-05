@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
-using Monad;
+using FluentAssertions.Monads;
+using ElFoggero.Monads;
 using NSubstitute;
 using Xunit;
 

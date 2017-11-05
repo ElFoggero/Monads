@@ -1,4 +1,4 @@
-﻿namespace Monad
+﻿namespace ElFoggero.Monads
 {
     public abstract class Option<T>
     {

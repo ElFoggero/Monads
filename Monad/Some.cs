@@ -1,4 +1,4 @@
-﻿namespace Monad
+﻿namespace ElFoggero.Monads
 {
     internal sealed class Some<T> : Option<T>
     {

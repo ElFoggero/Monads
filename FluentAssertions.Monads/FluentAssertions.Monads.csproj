@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Monad\Monad.csproj" />
+    <ProjectReference Include="..\Monad\ElFoggero.Monads.csproj" />
   </ItemGroup>
 
 </Project>

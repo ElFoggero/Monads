@@ -1,9 +1,9 @@
 ﻿using FluentAssertions.Execution;
-using Monad;
+using ElFoggero.Monads;
 
-namespace Tests
+namespace FluentAssertions.Monads
 {
-    public class SomeAsserter<T> : IOptionMatcher<T, T>
+    internal class SomeAsserter<T> : IOptionMatcher<T, T>
     {
         public T Some(T value)
         {

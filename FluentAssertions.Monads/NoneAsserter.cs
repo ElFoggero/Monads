@@ -1,9 +1,9 @@
 ﻿using FluentAssertions.Execution;
-using Monad;
+using ElFoggero.Monads;
 
 namespace FluentAssertions.Monads
 {
-    public class NoneAsserter<T> : IOptionMatcher<T, T>
+    internal class NoneAsserter<T> : IOptionMatcher<T, T>
     {
         public T Some(T value)
         {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Monad
+namespace ElFoggero.Monads
 {
     public static class Option
     {

@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FluentAssertions.Monads\FluentAssertions.Monads.csproj" />
-    <ProjectReference Include="..\Monad\Monad.csproj" />
+    <ProjectReference Include="..\Monad\ElFoggero.Monads.csproj" />
   </ItemGroup>
 
 </Project>

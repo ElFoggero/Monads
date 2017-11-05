@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monad
+namespace ElFoggero.Monads
 {
     internal class OptionGetValueOrDefaultMatcher<T> : IOptionMatcher<T, T>
     {

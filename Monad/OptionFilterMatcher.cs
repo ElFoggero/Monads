@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monad
+namespace ElFoggero.Monads
 {
     internal class OptionFilterMatcher<T> : IOptionMatcher<T, Option<T>>
     {
