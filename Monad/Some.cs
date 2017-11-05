@@ -1,6 +1,6 @@
 ﻿namespace Monad
 {
-    public sealed class Some<T> : Option<T>
+    internal sealed class Some<T> : Option<T>
     {
 
         public Some(T value)
@@ -12,7 +12,7 @@
 
         public override U Apply<U>(IOptionMatcher<T, U> matcher)
         {
-            return matcher.Match(this);
+            return matcher.Some(Value);
         }
     }
 }

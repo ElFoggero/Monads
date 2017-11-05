@@ -11,10 +11,11 @@ namespace Tests
         public void Some_Apply_Calls_OptionMatcher_Apply()
         {
             var matcher = Substitute.For<IOptionMatcher<int, string>>();
-            var some = new Some<int>(1337);
+            const int value = 1337;
             const string expected = "OK";
-            matcher.Match(some).Returns(expected);
+            matcher.Some(value).Returns(expected);
 
+            var some = Option.Of(value);
             var result = some.Apply(matcher);
 
             result.Should().Be(expected);
@@ -24,9 +25,9 @@ namespace Tests
         public void None_Apply_Calls_OptionMatcher_Apply()
         {
             var matcher = Substitute.For<IOptionMatcher<int, string>>();
-            var none = new None<int>();
+            var none = Option.None<int>();
             const string expected = "OK";
-            matcher.Match(none).Returns(expected);
+            matcher.None().Returns(expected);
 
             var result = none.Apply(matcher);
 
@@ -36,30 +37,27 @@ namespace Tests
         [Fact]
         public void Some_Bind_Calls_Selector()
         {
-            var some = new Some<int>(1337);
-            var result = new Some<string>("OK");
+            const int value = 1337;
+            var some = Option.Of(value);
 
-            var actual = some.Bind(i =>
-            {
-                i.Should().Be(some.Value);
-                return result;
-            });
+            const string expectedValue = "OK";
+            var actual = some.Bind(i => Option.Of(expectedValue));
 
-            actual.Should().BeSameAs(result);
+            actual.Should().BeSome(expectedValue);
         }
 
         [Fact]
         public void None_Bind_Does_Not_Call_Selector()
         {
-            var none = new None<int>();
+            var none = Option.None<int>();
 
             var result = none.Bind(i =>
             {
                 Assert.False(true);
-                return new Some<string>("Fail");
+                return Option.Of("Fail");
             });
 
-            result.Should().BeOfType<None<string>>();
+            result.Should().BeNone();
         }
 
 
@@ -69,7 +67,8 @@ namespace Tests
             const int i = 1337;
             var option = Option.Of(i);
 
-            option.Should().BeOfType<Some<int>>().Which.Value.Should().Be(i);
+
+            option.Should().BeSome(i);
         }
 
         [Fact]
@@ -78,7 +77,7 @@ namespace Tests
             const string s = "OK";
             var option = Option.Of(s);
 
-            option.Should().BeOfType<Some<string>>().Which.Value.Should().Be(s);
+            option.Should().BeSome(s);
         }
 
         [Fact]
@@ -87,7 +86,7 @@ namespace Tests
             const string s = null;
             var option = Option.Of(s);
 
-            option.Should().BeOfType<None<string>>();
+            option.Should().BeNone();
         }
 
         [Fact]
@@ -96,16 +95,15 @@ namespace Tests
             int? i = 1337;
             var option = Option.Of(i);
 
-            option.Should().BeOfType<Some<int>>().Which.Value.Should().Be(i);
+            option.Should().BeSome(i.Value);
         }
 
         [Fact]
         public void Option_Of_Returns_None_For_Null_Nullables()
         {
-            int? i = null;
-            var option = Option.Of(i);
+            var option = Option.Of((int?) null);
 
-            option.Should().BeOfType<None<int>>();
+            option.Should().BeNone();
         }
 
         [Fact]
@@ -113,7 +111,31 @@ namespace Tests
         {
             var option = Option.None<int>();
 
-            option.Should().BeOfType<None<int>>();
+            option.Should().BeNone();
+        }
+
+        [Fact]
+        public void Option_Map_On_Some_Calls_Selector()
+        {
+            var option = Option.Of(3);
+
+            var result = option.Map(i => i.ToString());
+
+            result.Should().BeSome("3");
+        }
+
+        [Fact]
+        public void Option_Map_On_None_Does_Not_Call_Selector()
+        {
+            var option = Option.None<int>();
+
+            var result = option.Map(i =>
+            {
+                Assert.False(true);
+                return i.ToString();
+            });
+
+            result.Should().BeNone();
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.12
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monad", "Monad\Monad.csproj", "{2D665E05-4DD3-4314-A054-BA364BEBBC52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monad", "Monad\Monad.csproj", "{2D665E05-4DD3-4314-A054-BA364BEBBC52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{0CF2DF47-37F8-4691-899B-8BCB091BC956}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{0CF2DF47-37F8-4691-899B-8BCB091BC956}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Monads", "FluentAssertions.Monads\FluentAssertions.Monads.csproj", "{AFEED41C-E4F9-48C4-A349-012802DABFBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{0CF2DF47-37F8-4691-899B-8BCB091BC956}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CF2DF47-37F8-4691-899B-8BCB091BC956}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CF2DF47-37F8-4691-899B-8BCB091BC956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFEED41C-E4F9-48C4-A349-012802DABFBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFEED41C-E4F9-48C4-A349-012802DABFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFEED41C-E4F9-48C4-A349-012802DABFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFEED41C-E4F9-48C4-A349-012802DABFBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0C2A952-73F6-485A-8650-B2D544C17E0B}
 	EndGlobalSection
 EndGlobal
