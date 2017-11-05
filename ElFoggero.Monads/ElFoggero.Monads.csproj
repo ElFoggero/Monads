@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <PackageId>ElFoggero.Monads</PackageId>
+    <PackageVersion>0.0.1</PackageVersion>
+    <Version>$(PackageVersion).0</Version>
+    <Authors>Jan Felix Reuter</Authors>
+    <Description>Useful monads</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>Added options monad</PackageReleaseNotes>
+    <Copyright>Copyright 2017 (c) Jan Felix Reuter, All rights reserved</Copyright>
+    <PackageTags>monad monads option options</PackageTags>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.0\ElFoggero.Monads.xml</DocumentationFile>
+  </PropertyGroup>
+</Project>

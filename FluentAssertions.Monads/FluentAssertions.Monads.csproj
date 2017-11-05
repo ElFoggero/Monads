@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
+
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Monad\ElFoggero.Monads.csproj" />
+    <ProjectReference Include="..\ElFoggero.Monads\ElFoggero.Monads.csproj" />
   </ItemGroup>
 
 </Project>
