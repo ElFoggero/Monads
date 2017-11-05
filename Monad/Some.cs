@@ -2,7 +2,6 @@
 {
     internal sealed class Some<T> : Option<T>
     {
-
         public Some(T value)
         {
             Value = value;

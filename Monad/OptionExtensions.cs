@@ -15,5 +15,16 @@ namespace Monad
             var mapMatcher = new OptionMapMatcher<T, U>(selector);
             return option.Apply(mapMatcher);
         }
+
+        public static T GetValueOrDefault<T>(this Option<T> option, Func<T> defaultValueFactory)
+        {
+            var getValueOrDefaultMatcher = new OptionGetValueOrDefaultMatcher<T>(defaultValueFactory);
+            return option.Apply(getValueOrDefaultMatcher);
+        }
+
+        public static T GetValueOrDefault<T>(this Option<T> option)
+        {
+            return option.GetValueOrDefault(() => default(T));
+        }
     }
 }

@@ -137,5 +137,49 @@ namespace Tests
 
             result.Should().BeNone();
         }
+
+        [Fact]
+        public void Option_None_GetValueOrDefault_Calls_Factory_Function()
+        {
+            var option = Option.None<int>();
+
+            var value = option.GetValueOrDefault(() => 1337);
+
+            value.Should().Be(1337);
+        }
+
+        [Fact]
+        public void Option_Some_GetValueOrDefault_Returns_Value_And_Doesnt_Call_Factory_Function()
+        {
+            var option = Option.Of(1337);
+
+            var value = option.GetValueOrDefault(() =>
+            {
+                Assert.False(true);
+                return 0;
+            });
+
+            value.Should().Be(1337);
+        }
+
+        [Fact]
+        public void Option_None_GetValueOrDefault_Returns_Default_Value()
+        {
+            var option = Option.None<int>();
+
+            var value = option.GetValueOrDefault();
+
+            value.Should().Be(default(int));
+        }
+
+        [Fact]
+        public void Option_Some_GetValueOrDefault_Returns_Value()
+        {
+            var option = Option.Of(1337);
+
+            var value = option.GetValueOrDefault();
+
+            value.Should().Be(1337);
+        }
     }
 }
