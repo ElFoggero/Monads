@@ -61,5 +61,59 @@ namespace Tests
 
             result.Should().BeOfType<None<string>>();
         }
+
+
+        [Fact]
+        public void Option_Of_Returns_Some_For_Value_Type()
+        {
+            const int i = 1337;
+            var option = Option.Of(i);
+
+            option.Should().BeOfType<Some<int>>().Which.Value.Should().Be(i);
+        }
+
+        [Fact]
+        public void Option_Of_Returns_Some_For_Non_Null_Reference_Type()
+        {
+            const string s = "OK";
+            var option = Option.Of(s);
+
+            option.Should().BeOfType<Some<string>>().Which.Value.Should().Be(s);
+        }
+
+        [Fact]
+        public void Option_Of_Returns_None_For_Null_Reference_Type()
+        {
+            const string s = null;
+            var option = Option.Of(s);
+
+            option.Should().BeOfType<None<string>>();
+        }
+
+        [Fact]
+        public void Option_Of_Returns_Some_For_Non_Null_Nullables()
+        {
+            int? i = 1337;
+            var option = Option.Of(i);
+
+            option.Should().BeOfType<Some<int>>().Which.Value.Should().Be(i);
+        }
+
+        [Fact]
+        public void Option_Of_Returns_None_For_Null_Nullables()
+        {
+            int? i = null;
+            var option = Option.Of(i);
+
+            option.Should().BeOfType<None<int>>();
+        }
+
+        [Fact]
+        public void Option_None_Returns_None()
+        {
+            var option = Option.None<int>();
+
+            option.Should().BeOfType<None<int>>();
+        }
     }
 }
