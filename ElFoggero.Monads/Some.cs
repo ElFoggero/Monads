@@ -4,14 +4,14 @@
     {
         public Some(T value)
         {
-            Value = value;
+            _value = value;
         }
 
-        public T Value { get; }
+        private readonly T _value;
 
         public override U Apply<U>(IOptionMatcher<T, U> matcher)
         {
-            return matcher.Some(Value);
+            return matcher.Some(_value);
         }
     }
 }
